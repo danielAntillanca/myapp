@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Registro</ion-title>
+    </ion-card-header>
+     <ion-card-content> 
+      <form [FormGroup]="FormularioRegistro"(keyup enter)="guardar()">
+        </ion-item> 
+          <ion-label position="floating">nombre:</ion-label>
+          <ion-input FormControlName="name"ion-input>
+        </ion-item>
+        <ion-item> 
+          <ion-label position="floating">Password:</ion-label>
+          <ion-input FormControlName= "password"></ion-input>
+        </ion-item>
+        <ion-item> 
+          <ion-label position="floating"> confirmar Password:</ion-label>
+          <ion-input FormControlName="confirmacion password"></ion-input>
+        </ion-item> 
+        <br>
+        <ion-button (click)="guardar()"> Registrar
+        </ion-button>
+      ></form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
