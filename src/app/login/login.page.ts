@@ -28,4 +28,12 @@ export class LoginPage implements OnInit {
     };
     this.router.navigate(['/home'],NavigationExtras);
   }
+  registrar() {
+    let NavigationExtras: NavigationExtras= {
+      state:{
+        user:this.user 
+  }
+};
+this.router.navigate(['/registro'],NavigationExtras);
+}
 }
