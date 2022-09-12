@@ -1,5 +1,12 @@
+import { Router,NavigationExtras,Route } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
-import { Router,NavigationExtras } from '@angular/router'
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -8,32 +15,38 @@ import { Router,NavigationExtras } from '@angular/router'
 })
 export class LoginPage implements OnInit {
 
+  formularioLogin: FormGroup;
 
-  user={
-    usuario:"",
-    password:""
+  constructor(public fb: FormBuilder,
+    public alertController: AlertController) { 
+
+    this.formularioLogin = this.fb.group({
+      'nombre': new FormControl("",Validators.required),
+      'password': new FormControl("",Validators.required)
+    })
+
   }
-
-  constructor(private router: Router ) { }
 
   ngOnInit() {
+
   }
 
-  ingresar() {
+  async ingresar(){
 
-    let NavigationExtras: NavigationExtras= {
-      state:{
-        user:this.user 
-      }
-    };
-    this.router.navigate(['/home'],NavigationExtras);
+    var f = this.formularioLogin.value;
+
+    var usuario = JSON.parse(localStorage.getItem('usuario'));
+
+    if(usuario.nombre == f.nombre && usuario.password == f.password){
+      console.log('Ingresado');
+    }else{
+      const alert = await this.alertController.create({
+        header: 'Datos completos',
+        message: 'Los datos que ingresaste son correctos.',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
+    }
   }
-  registrar() {
-    let NavigationExtras: NavigationExtras= {
-      state:{
-        user:this.user 
-  }
-};
-this.router.navigate(['/registro'],NavigationExtras);
 }
-}
+

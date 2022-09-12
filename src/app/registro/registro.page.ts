@@ -3,7 +3,6 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  ReactiveFormsModule,
   FormBuilder
 } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
@@ -14,30 +13,28 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-  FormularioRegistro: any;
 
-
-  constructor(
-    public fb: FormBuilder,
+  formularioRegistro: FormGroup;
+  
+  constructor(public fb: FormBuilder,
     public alertController: AlertController) {
-    this.FormularioRegistro = this.fb.group({
-      'name': new FormControl("", Validators.required),
+    this.formularioRegistro = this.fb.group({
+      'nombre': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required),
       'confirmacionPassword': new FormControl("", Validators.required)
-    })
+    });
   }
-
 
   ngOnInit() {
   }
 
-async guardar(){
-    var f = this.FormularioRegistro.value;
+  async guardar(){
+    var f = this.formularioRegistro.value;
 
-    if(this.FormularioRegistro.invalid){
+    if(this.formularioRegistro.invalid){
       const alert = await this.alertController.create({
-        header: 'Datos incompletos',
-        message: 'Tienes que llenar todos los datos',
+        header: ' ',
+        message: 'Se ha creado su cuenta ',
         buttons: ['Aceptar']
       });
   
@@ -51,5 +48,6 @@ async guardar(){
     }
 
     localStorage.setItem('usuario',JSON.stringify(usuario));
-}
+  }
+
 }

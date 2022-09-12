@@ -3,7 +3,7 @@ ion-toolbar {
     
 }
 ion-content {
-    --background : rgb(3, 3, 73);
+    --background : rgb(70, 7, 153);
 
 }
 ion-card {
@@ -12,8 +12,12 @@ ion-card {
 ion-button {
     --background : rgb(72, 221, 35);
 }
-ion-title {
+ion-card-title {
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     
+}
+ion-title{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
 }
